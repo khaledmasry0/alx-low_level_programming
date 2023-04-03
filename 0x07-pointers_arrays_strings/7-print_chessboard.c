@@ -2,8 +2,9 @@
 
 /**
  * print_chessboard - prints chessboard
- * @a: rows
- * Return: none
+ * @a: row
+ *
+ * Return: void
  */
 
 void print_chessboard(char (*a)[8])
