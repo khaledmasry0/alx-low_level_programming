@@ -3,8 +3,6 @@
 /**
  *_puts_recursion - prints string
  *@s: string of characters
- *
- *
 */
 
 void _puts_recursion(char *s)
