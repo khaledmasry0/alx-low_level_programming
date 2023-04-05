@@ -1,69 +1,33 @@
 #include "main.h"
 
 /**
- * move_past_star - iterates past asterisk
- * @s2: the second string, can contain wildcard
- *
- * Return: the pointer past star
+ * str_checker - check if two strings are identical.
+ * @s1: string_1 base addr
+ * @s2: string_2 base addr
+ * @i: left index
+ * @j: special
+ * Return: 1 if s is palindrome, 0 otherwise.
  */
-char *move_past_star(char *s2)
+
+int str_checker(char *s1, char *s2, int i, int j)
 {
-	if (*s2 == '*')
-		return (move_past_star(s2 + 1));
-	else
-		return (s2);
+	if (s1[i] == '\0' && s2[j] == '\0')
+		return (1);
+	if (s1[i] == s2[j])
+		return (str_checker(s1, s2, i + 1, j + 1));
+	if (s1[i] == '\0' && s2[j] == '*')
+		return (str_checker(s1, s2, i, j + 1));
+	if (s2[j] == '*')
+		return (str_checker(s1, s2, i + 1, j) || str_checker(s1, s2, i, j + 1));
+	return (0);
 }
-
 /**
- * inception - makes magic a reality
- * @s1: the first string
- * @s2: the second string, can contain wildcard
- *
- * Return: 1 if identical, 0 if false
-*/
-
-int inception(char *s1, char *s2)
-{
-	int ret = 0;
-
-	if (*s1 == 0)
-		return (0);
-	if (*s1 == *s2)
-		ret += wildcmp(s1 + 1, s2 + 1);
-	ret += inception(s1 + 1, s2);
-	return (ret);
-}
-
-/**
- * wildcmp - compares two strings lexicographically
- * @s1: the first string
- * @s2: the second string, can contain wildcard
- *
- * Return: 1 if identical, 0 if false
+ * wildcmp - check if strings could be considered identical
+ * @s1: base address for str
+ * @s2: base address for str
+ * Return: 1 if are considered
  */
 int wildcmp(char *s1, char *s2)
 {
-	int retult = 0;
-
-	if (!*s1 && *s2 == '*' && !*move_past_star(s2))
-		return (1);
-	if (*s1 == *s2)
-	{
-		if (!*s1)
-			return (1);
-		return (wildcmp(s1 + 1, *s2 == '*' ? s2 : s2 + 1));
-	}
-	if (!*s1 || !s2)
-		return (0);
-	if (*s2 == '*')
-	{
-		s2 = move_past_star(s2);
-		if (!*s2)
-			return (1);
-		if (*s1 == *s2)
-			ret += wildcmp(s1 + 1, s2 + 1);
-		retult += inception(s1, s2);
-		return (!!retult);
-	}
-	return (0);
+	return (str_checker(s1, s2, 0, 0));
 }
