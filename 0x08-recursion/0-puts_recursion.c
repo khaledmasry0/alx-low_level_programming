@@ -2,7 +2,7 @@
 
 /**
  * _puts_recursion - print str
- * *@S: str of chara
+ * *@S: str of character
  * Return: void
 */
 
