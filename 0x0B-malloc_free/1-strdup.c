@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * *_strdup - return a pointer to a newly allocated space in memory contains a copy of the string given as a parameter.
+ * *_strdup - return a pointer to a newly allocated space in memory contains a
+ * copy of the string giveas a parameter.
  * @str: str
  * Return: 0
  */
